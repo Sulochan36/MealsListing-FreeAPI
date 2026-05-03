@@ -1,73 +1,94 @@
-# React + TypeScript + Vite
+# 🍽️ Meals Listing App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React + TypeScript application that fetches and displays a list of meals using a public API. It demonstrates API integration, data transformation, and pagination handling.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+* Fetch meals from API
+* Pagination support (`page`, `limit`)
+* Search support via query param
+* Clean data transformation (ingredients + measures)
+* Loading & error states
+* TypeScript-based architecture
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* React
+* TypeScript
+* Fetch API
+* Tailwindcss
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📦 API Endpoint
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+https://api.freeapi.app/api/v1/public/meals
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Query Params:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* `page` → current page number
+* `limit` → items per page
+* `query` → search keyword
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 📂 Project Structure
+
 ```
+src/
+│── types/
+│── utils/
+│── App.tsx
+```
+
+---
+
+## 🔄 Data Handling
+
+The API returns meals in a raw format with:
+
+* `strIngredient1...20`
+* `strMeasure1...20`
+
+These are transformed into a cleaner structure:
+
+```
+ingredients: [
+  { name: "Salt", measure: "1 tsp" }
+]
+```
+
+---
+
+## ▶️ Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## ⚠️ Notes
+
+* UI is minimal (focus is on logic & structure)
+* Data is normalized before rendering
+* Ready for future enhancements (UI, routing, state management)
+
+---
+
+## 📌 Future Improvements
+
+* Better UI (cards/grid)
+* Meal detail page
+* Search with debounce
+* Pagination controls
+* API caching (React Query)
+
+---

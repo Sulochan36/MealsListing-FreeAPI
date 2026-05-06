@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchMeals } from "./utils/meals";
 import type { Meal } from "./types/meal";
 import MealCard from "./components/MealCard";
